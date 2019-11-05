@@ -9,13 +9,13 @@ import text_embedding as te
 INPUT_ROW_SIZE = te.TextEmbedding.INPUT_ROW_SIZE
 INPUT_COL_SIZE = te.TextEmbedding.INPUT_COL_SIZE
 TRAIN_DATA_SIZE = 1
-TEST_DATA_SIZE = 500
+TEST_DATA_SIZE = 1000
 
-SAVE_MODEL = 'model/model_test.ckpt'
+SAVE_MODEL = 'model/model_test_500_filter_6.ckpt'
 
 tf.disable_v2_behavior()
 
-INPUT_DATA_FILE_NAME = "data/korean_spoiler_splitted_only_sp.csv"
+INPUT_DATA_FILE_NAME = "data/korean_spoiler_splitted_only_nosp.csv"
 
 numpy.set_printoptions(threshold=sys.maxsize)
 
@@ -26,7 +26,8 @@ test_data, test_labels, train_data, train_labels = textEmbedding.embedding_data(
 
 X = tf.placeholder(tf.float32, [None, INPUT_ROW_SIZE, INPUT_COL_SIZE,1])
 Y = tf.placeholder(tf.float32, [None, 2])
-filter_sizes = [3, 4, 5]
+filter_sizes = [3, 4, 5, 6, 7, 8]
+# filter_sizes = [3, 4, 5]
 embedding_size = INPUT_COL_SIZE
 num_filters = 128
 sequence_length = INPUT_ROW_SIZE

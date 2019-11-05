@@ -9,12 +9,10 @@ import korean_splitter as ks
 
 INPUT_ROW_SIZE = te.TextEmbedding.INPUT_ROW_SIZE
 INPUT_COL_SIZE = te.TextEmbedding.INPUT_COL_SIZE
-TRAIN_DATA_SIZE = 1
-TEST_DATA_SIZE = 5
 
-TEST_STR = "아이언맨 멋지다"
+TEST_STR = "토르 사111111망"
 
-SAVE_MODEL = 'model/model_test.ckpt'
+SAVE_MODEL = 'model/model_test_7500.ckpt'
 
 tf.disable_v2_behavior()
 
@@ -27,8 +25,6 @@ textEmbedding = te.TextEmbedding(INPUT_DATA_FILE_NAME)
 sp_data = ks.KoreanSplitter.split_korean(TEST_STR)
 
 test_data = textEmbedding.embedding_string(sp_data)
-
-# test_data, test_labels, train_data, train_labels = textEmbedding.embedding_data(TEST_DATA_SIZE, TRAIN_DATA_SIZE)
 
 X = tf.placeholder(tf.float32, [None, INPUT_ROW_SIZE, INPUT_COL_SIZE,1])
 Y = tf.placeholder(tf.float32, [None, 2])
@@ -79,14 +75,7 @@ with tf.name_scope("output"):
     scores = tf.nn.xw_plus_b(h_pool_flat, W, b, name="scores")
     predictions = tf.argmax(scores, 1, name="predictions")
 # Combine all the pooled features
-losses = tf.nn.softmax_cross_entropy_with_logits(logits=scores, labels=Y)
-loss = tf.reduce_mean(losses) + l2_reg_lambda * l2_loss
-# correct_predictions = tf.equal(predictions, tf.argmax(Y, 1))
-# accuracy = tf.reduce_mean(tf.cast(correct_predictions, "float"), name="accuracy")
-# Loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=Y, logits=predictions))
-train_step = tf.train.AdamOptimizer(0.005).minimize(loss)
-# correct_prediction = tf.equal(tf.argmax(predictions, 1), tf.argmax(Y,1))
-# accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+
 with tf.Session() as sess:
     print("load data...")
     saver = tf.train.Saver()

@@ -11,7 +11,7 @@ INPUT_COL_SIZE = te.TextEmbedding.INPUT_COL_SIZE
 TRAIN_DATA_SIZE = 100
 TEST_DATA_SIZE = 500
 
-SAVE_MODEL = 'model/model_test_100.ckpt'
+SAVE_MODEL = 'model/model_test_500_filter_6.ckpt'
 
 tf.disable_v2_behavior()
 
@@ -27,7 +27,8 @@ test_data, test_labels, train_data, train_labels = textEmbedding.embedding_data(
 #train, test data 완성
 X = tf.placeholder(tf.float32, [None, INPUT_ROW_SIZE, INPUT_COL_SIZE,1])
 Y = tf.placeholder(tf.float32, [None, 2])
-filter_sizes = [3, 4, 5]
+filter_sizes = [3, 4, 5, 6, 7, 8]
+# filter_sizes = [3, 4, 5]
 embedding_size = INPUT_COL_SIZE
 num_filters = 128
 sequence_length = INPUT_ROW_SIZE
@@ -87,6 +88,7 @@ with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     for i in range(100):
         sess.run(train_step, feed_dict={X: train_data, Y:train_labels})
-    print(sess.run(accuracy, feed_dict={X: test_data, Y: test_labels}))
+        if i%10 == 0:
+            print(sess.run(accuracy, feed_dict={X: test_data, Y: test_labels}))
     saver = tf.train.Saver()
     saver.save(sess, SAVE_MODEL)

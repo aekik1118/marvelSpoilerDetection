@@ -1,3 +1,4 @@
 /model
 __pycache__/text_embedding.cpython-37.pyc
 test
+__pycache__/korean_splitter.cpython-37.pyc
