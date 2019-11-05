@@ -17,6 +17,30 @@ class TextEmbedding:
     def __init__(self, data_file_name):
         self.data_file_name = data_file_name
 
+    def embedding_string(self, splitted_korean_str_list):
+        INPUT_ROW_SIZE = TextEmbedding.INPUT_ROW_SIZE
+        INPUT_COL_SIZE = TextEmbedding.INPUT_COL_SIZE
+
+        letters_list = (list)(TextEmbedding.letters)
+        le = LabelEncoder().fit(letters_list)
+
+        data_str = splitted_korean_str_list
+
+        str_size = len(data_str)
+        if str_size > INPUT_ROW_SIZE:
+            data_str = data_str[:INPUT_ROW_SIZE]
+        elif str_size < INPUT_ROW_SIZE:
+            data_str += " " * (INPUT_ROW_SIZE - str_size)
+
+        str_list = list(data_str)
+
+        le_letter = le.transform(str_list)
+        le_letter = le_letter.reshape(-1, 1)
+        ohe_letters = tf.keras.utils.to_categorical(le_letter, num_classes=INPUT_COL_SIZE)
+
+        return numpy.array(ohe_letters).reshape(1, INPUT_ROW_SIZE, INPUT_COL_SIZE, 1)
+
+
     def embedding_data(self, TEST_DATA_SIZE, TRAIN_DATA_SIZE):
 
         INPUT_ROW_SIZE = TextEmbedding.INPUT_ROW_SIZE

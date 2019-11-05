@@ -1,9 +1,7 @@
-import hgtk
+import korean_splitter as ks
 
 INPUT_DATA_FILE_NAME = "data/korean_spoiler.csv"
 OUTPUT_DATA_FILE_NAME = "data/korean_spoiler_splitted.csv"
-
-except_char_list = ['ᴥ', '¿', 'º', '$', '§','°', 'ª','±', '¶']
 
 with open(INPUT_DATA_FILE_NAME,"r", encoding='UTF8') as file:
     csv_data = []
@@ -17,9 +15,7 @@ with open(OUTPUT_DATA_FILE_NAME,"w", encoding='UTF8') as file_out:
             str_input += "0 ,"
         else:
             str_input += "1 ,"
-        hangul_split = hgtk.text.decompose(i[0])
 
-        for i in except_char_list:
-            hangul_split = hangul_split.replace(i,'')
+        hangul_split = ks.KoreanSplitter.split_korean(i[0])
         str_input += hangul_split + "\n"
         file_out.write(str_input)
