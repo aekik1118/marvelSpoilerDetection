@@ -7,7 +7,7 @@ import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 
 
-class TextEmbedding:
+class TextEmbedding(object):
 
     letters = "0123456789ㄱㄲㄳㄴㄵㄶㄷㄸㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅃㅄㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ¡!@#%^&*()?~:;<>×_+=- /.·,´`|\"\'\\[]{}\nabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -16,6 +16,7 @@ class TextEmbedding:
 
     def __init__(self, data_file_name):
         self.data_file_name = data_file_name
+        self.csv_data_ohe = []
 
     def embedding_string(self, splitted_korean_str_list):
         INPUT_ROW_SIZE = TextEmbedding.INPUT_ROW_SIZE

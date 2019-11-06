@@ -1,8 +1,6 @@
 import tensorflow.compat.v1 as tf
-from sklearn.preprocessing import LabelEncoder
 import sys
 import numpy
-import random
 
 import text_embedding as te
 
@@ -13,10 +11,10 @@ TEST_DATA_SIZE = 500
 
 SAVE_MODEL = 'model/model_test_500_filter_6.ckpt'
 
-tf.disable_v2_behavior()
 
 INPUT_DATA_FILE_NAME = "data/korean_spoiler_splitted.csv"
 
+tf.disable_v2_behavior()
 numpy.set_printoptions(threshold=sys.maxsize)
 
 

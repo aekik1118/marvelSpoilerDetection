@@ -11,11 +11,11 @@ INPUT_COL_SIZE = te.TextEmbedding.INPUT_COL_SIZE
 TRAIN_DATA_SIZE = 1
 TEST_DATA_SIZE = 1000
 
-SAVE_MODEL = 'model/model_test_500_filter_6.ckpt'
+SAVE_MODEL = 'model/model_test_4000_filter_6.ckpt'
 
 tf.disable_v2_behavior()
 
-INPUT_DATA_FILE_NAME = "data/korean_spoiler_splitted_only_nosp.csv"
+INPUT_DATA_FILE_NAME = "data/korean_spoiler_splitted_only_sp.csv"
 
 numpy.set_printoptions(threshold=sys.maxsize)
 

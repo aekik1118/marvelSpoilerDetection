@@ -10,7 +10,7 @@ import korean_splitter as ks
 INPUT_ROW_SIZE = te.TextEmbedding.INPUT_ROW_SIZE
 INPUT_COL_SIZE = te.TextEmbedding.INPUT_COL_SIZE
 
-TEST_STR = "토르 사111111망"
+TEST_STR = "아이언11맨 사111111망"
 
 SAVE_MODEL = 'model/model_test_7500.ckpt'
 
@@ -28,6 +28,7 @@ test_data = textEmbedding.embedding_string(sp_data)
 
 X = tf.placeholder(tf.float32, [None, INPUT_ROW_SIZE, INPUT_COL_SIZE,1])
 Y = tf.placeholder(tf.float32, [None, 2])
+# filter_sizes = [3, 4, 5, 6, 7, 8]
 filter_sizes = [3, 4, 5]
 embedding_size = INPUT_COL_SIZE
 num_filters = 128
