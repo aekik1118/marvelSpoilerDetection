@@ -2,6 +2,7 @@ import tensorflow.compat.v1 as tf
 import sys
 import numpy
 
+
 class KoreanCNN(object):
     def __init__(self, INPUT_ROW_SIZE, INPUT_COL_SIZE,):
         tf.disable_v2_behavior()

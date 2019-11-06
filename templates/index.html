@@ -137,14 +137,14 @@
 
         $.ajax({
           type:"POST",
-          url:"/test",
+          url:"/spoiler",
           data:JSON.stringify(spo),
           contentType:"application/json; charset=utf-8",
           dataType:"json",
           
           success:function(data){
-            console.log(data);
-            if(data.tof == true) {
+            console.log(data.tof);
+            if(data.tof == 'true') {
               $('.modal-content').prepend('<p class="spo_result" align="center">스포일러입니다.</p>');
             }
             else {

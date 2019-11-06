@@ -1,8 +1,6 @@
 import tensorflow.compat.v1 as tf
-from sklearn.preprocessing import LabelEncoder
 import sys
 import numpy
-import random
 
 import text_embedding as te
 import korean_splitter as ks
