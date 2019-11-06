@@ -1,7 +1,7 @@
 import korean_splitter as ks
 
-INPUT_DATA_FILE_NAME = "data/korean_spoiler.csv"
-OUTPUT_DATA_FILE_NAME = "data/korean_spoiler_splitted.csv"
+INPUT_DATA_FILE_NAME = "data/spoiler4.csv"
+OUTPUT_DATA_FILE_NAME = "data/korean_spoiler_splitted4.csv"
 
 with open(INPUT_DATA_FILE_NAME,"r", encoding='UTF8') as file:
     csv_data = []
