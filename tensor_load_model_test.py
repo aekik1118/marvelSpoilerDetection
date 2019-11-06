@@ -10,11 +10,11 @@ import korean_cnn as kc
 INPUT_ROW_SIZE = te.TextEmbedding.INPUT_ROW_SIZE
 INPUT_COL_SIZE = te.TextEmbedding.INPUT_COL_SIZE
 TRAIN_DATA_SIZE = 1
-TEST_DATA_SIZE = 500
+TEST_DATA_SIZE = 1000
 
-SAVE_MODEL = 'model/model_test_4000_filter_6.ckpt'
+SAVE_MODEL = 'model/model_30000_400_100_mini.ckpt'
 
-INPUT_DATA_FILE_NAME = "data/korean_spoiler_splitted_only_sp.csv"
+INPUT_DATA_FILE_NAME = "data/korean_spoiler_splitted_only_nosp.csv"
 
 textEmbedding = te.TextEmbedding(INPUT_DATA_FILE_NAME)
 

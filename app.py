@@ -12,8 +12,9 @@ app = Flask(__name__)
 INPUT_ROW_SIZE = te.TextEmbedding.INPUT_ROW_SIZE
 INPUT_COL_SIZE = te.TextEmbedding.INPUT_COL_SIZE
 
-SAVE_MODEL = 'model/model_test_4000_filter_6.ckpt'
+SAVE_MODEL = 'model/model_30000_400_100_mini.ckpt'
 textEmbedding = te.TextEmbedding("")
+
 
 @app.route('/')
 def index():
