@@ -3,3 +3,6 @@ test
 __pycache__/korean_splitter.cpython-37.pyc
 __pycache__/app.cpython-37.pyc
 __pycache__/korean_cnn.cpython-37.pyc
+model/model_test_500_drop.ckpt.meta
+model/model_test_500_drop.ckpt.index
+model/model_test_500_drop.ckpt.data-00000-of-00001

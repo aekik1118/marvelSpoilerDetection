@@ -18,7 +18,7 @@ class KoreanCNN(object):
         num_classes = 2
         l2_reg_lambda = 0.0
         l2_loss = tf.constant(0.0)
-        # dropout_keep_prob = tf.placeholder(tf.float32, name="dropout_keep_prob")
+        self.dropout_keep_prob = tf.placeholder(tf.float32, name="dropout_keep_prob")
         pooled_outputs = []
 
         for i, filter_size in enumerate(self.filter_sizes):
@@ -45,8 +45,8 @@ class KoreanCNN(object):
         num_filters_total = num_filters * len(self.filter_sizes)
         self.h_pool = tf.concat(pooled_outputs, 3)
         self.h_pool_flat = tf.reshape(self.h_pool, [-1, num_filters_total])
-        # with tf.name_scope("dropout"):
-        #     h_drop = tf.nn.dropout(h_pool_flat, dropout_keep_prob)
+        with tf.name_scope("dropout"):
+            self.h_drop = tf.nn.dropout(self.h_pool_flat, self.dropout_keep_prob)
         with tf.name_scope("output"):
             W = tf.get_variable(
                 "W",
@@ -56,7 +56,7 @@ class KoreanCNN(object):
             b = tf.Variable(tf.constant(0.1, shape=[num_classes]), name="b")
             l2_loss += tf.nn.l2_loss(W)
             l2_loss += tf.nn.l2_loss(b)
-            self.scores = tf.nn.xw_plus_b(self.h_pool_flat, W, b, name="scores")
+            self.scores = tf.nn.xw_plus_b(self.h_drop, W, b, name="scores")
             self.predictions = tf.argmax(self.scores, 1, name="predictions")
         # Combine all the pooled features
         self.losses = tf.nn.softmax_cross_entropy_with_logits(logits=self.scores, labels=self.Y)
