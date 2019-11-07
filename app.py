@@ -12,7 +12,7 @@ app = Flask(__name__)
 INPUT_ROW_SIZE = te.TextEmbedding.INPUT_ROW_SIZE
 INPUT_COL_SIZE = te.TextEmbedding.INPUT_COL_SIZE
 
-SAVE_MODEL = 'model/model_30000_400_100_mini.ckpt'
+SAVE_MODEL = 'model/model_30000_1000_15_drop.ckpt'
 textEmbedding = te.TextEmbedding("")
 
 
@@ -36,7 +36,7 @@ def spoiler():
         print("load data...")
         saver = tf.train.Saver()
         saver.restore(sess, SAVE_MODEL)
-        res = sess.run(cnn.predictions, feed_dict={cnn.X: test_data})
+        res = sess.run(cnn.predictions, feed_dict={cnn.X: test_data, cnn.dropout_keep_prob: 1})
         print(res)
 
         if res[0] == 1:

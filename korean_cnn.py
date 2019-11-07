@@ -10,7 +10,7 @@ class KoreanCNN(object):
 
         self.X = tf.placeholder(tf.float32, [None, INPUT_ROW_SIZE, INPUT_COL_SIZE, 1])
         self.Y = tf.placeholder(tf.float32, [None, 2])
-        self.filter_sizes = [3, 4, 5, 6, 7, 8]
+        self.filter_sizes = [7, 8, 9, 10]
 
         embedding_size = INPUT_COL_SIZE
         num_filters = 128
